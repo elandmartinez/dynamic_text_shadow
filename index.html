@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mouse Shadow</title>
+    </head>
+    <body>
+        <div class="hero">
+            <h1 contenteditable>🔥WOAH!</h1>
+        </div>
+
+        <style>
+        html {
+            color: black;
+            font-family: sans-serif;
+        }
+
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+
+        h1 {
+            font-size: 100px;
+        }
+        </style>
+
+        <script>
+            let shadowPositionX;
+            let shadowPositionY;
+            const body = document.querySelector("body")
+            const bigText = document.querySelector("h1");
+            let pointerOver = false;
+            body.addEventListener("pointerover", (e) => {
+                p0interOver = true;
+            })
+            body.addEventListener("pointermove", (e) => {
+                const pageCentralWidth = document.activeElement.clientWidth / 2;
+                const pageCentralHeight = (document.activeElement.clientHeight / 2) + 100;
+                shadowPositionX = ((pageCentralWidth - e.screenX) / 10);
+                shadowPositionY = ((pageCentralHeight- e.screenY) / 10);
+                bigText.style.textShadow = `
+                ${shadowPositionX}px ${shadowPositionY}px 0 rgba(100,0,0, 0.5),
+                ${shadowPositionX * -1}px ${shadowPositionY * -1}px 0 rgba(0,0,200, 0.5)
+                `;
+
+            })
+            body.addEventListener("pointerout", (e) => {
+                pointerOver = false;
+            })
+        </script>
+    </body>
+</html>
